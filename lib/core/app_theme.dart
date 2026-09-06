@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 class AppTheme {
   const AppTheme._();
 
-  static const seed = Color(0xFF2563EB);
+  /// Brand teal.
+  static const seed = Color(0xFF0D9488);
+
+  static const fontFamily = 'PlusJakartaSans';
 
   static const high = Color(0xFFDC2626);
   static const medium = Color(0xFFF59E0B);
   static const low = Color(0xFF16A34A);
 
-  /// Palette used to colour-code courses.
+  /// Palette used to colour-code courses. Teal first so the default matches
+  /// the brand.
   static const coursePalette = <Color>[
+    Color(0xFF0D9488),
     Color(0xFF2563EB),
     Color(0xFF7C3AED),
     Color(0xFF059669),
@@ -64,15 +69,17 @@ class AppTheme {
       brightness: brightness,
     );
 
-    final scaffold = isDark ? const Color(0xFF0F1115) : const Color(0xFFF3F4F6);
-    final surface = isDark ? const Color(0xFF181B22) : Colors.white;
-    final field = isDark ? const Color(0xFF21252E) : const Color(0xFFF3F4F6);
-    final outline = isDark ? const Color(0xFF2C313B) : const Color(0xFFE5E7EB);
+    // Teal-tinted neutrals so the brand colour carries through the surfaces.
+    final scaffold = isDark ? const Color(0xFF0E1413) : const Color(0xFFF0FDFA);
+    final surface = isDark ? const Color(0xFF16201E) : Colors.white;
+    final field = isDark ? const Color(0xFF1E2A28) : const Color(0xFFECF7F4);
+    final outline = isDark ? const Color(0xFF2A3835) : const Color(0xFFD9EBE6);
 
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
       colorScheme: scheme,
+      fontFamily: fontFamily,
       scaffoldBackgroundColor: scaffold,
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
