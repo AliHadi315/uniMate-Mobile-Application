@@ -113,7 +113,7 @@ class TaskTile extends StatelessWidget {
         : AppTheme.courseColor(course!.colorValue, seedIndex: course!.id ?? 0);
 
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 250),
+      duration: AppTheme.motion(context, const Duration(milliseconds: 250)),
       opacity: task.completed ? 0.55 : 1,
       child: AppTile(
       accent: accent,

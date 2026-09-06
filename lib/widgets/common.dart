@@ -82,6 +82,10 @@ class Pill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The tint keeps the accent identity; the text is darkened in light mode
+    // so 11px labels stay above the 4.5:1 contrast minimum.
+    final tone = AppTheme.textTone(color, Theme.of(context).brightness);
+
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: dense ? 8 : 10,
@@ -95,13 +99,13 @@ class Pill extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (icon != null) ...[
-            Icon(icon, size: dense ? 12 : 14, color: color),
+            Icon(icon, size: dense ? 12 : 14, color: tone),
             const SizedBox(width: 4),
           ],
           Text(
             text,
             style: TextStyle(
-              color: color,
+              color: tone,
               fontWeight: FontWeight.w600,
               fontSize: dense ? 11 : 12,
             ),
@@ -217,8 +221,8 @@ class SquareIconButton extends StatelessWidget {
     final surfaces = AppSurfaces.of(context);
 
     final button = SizedBox(
-      height: 42,
-      width: 42,
+      height: 44, // 44px minimum touch target
+      width: 44,
       child: Material(
         color: surfaces.tile,
         borderRadius: BorderRadius.circular(14),
