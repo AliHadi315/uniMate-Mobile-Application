@@ -323,7 +323,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: Row(
         children: [
-          const Text('🔥', style: TextStyle(fontSize: 18)),
+          Icon(
+            Icons.local_fire_department,
+            size: 20,
+            color: AppTheme.textTone(
+              AppTheme.medium,
+              Theme.of(context).brightness,
+            ),
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
@@ -554,7 +561,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             borderRadius: BorderRadius.circular(999),
             child: TweenAnimationBuilder<double>(
               tween: Tween(begin: 0, end: data.progress),
-              duration: const Duration(milliseconds: 500),
+              duration: AppTheme.motion(context, const Duration(milliseconds: 500)),
               builder: (context, value, _) => LinearProgressIndicator(
                 value: value,
                 minHeight: 10,

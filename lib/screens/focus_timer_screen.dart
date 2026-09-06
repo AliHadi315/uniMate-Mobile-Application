@@ -212,7 +212,7 @@ class _FocusTimerScreenState extends State<FocusTimerScreen> {
                                 ? 0
                                 : _elapsedSeconds / _totalSeconds,
                           ),
-                          duration: const Duration(milliseconds: 400),
+                          duration: AppTheme.motion(context, const Duration(milliseconds: 400)),
                           builder: (context, value, _) =>
                               CircularProgressIndicator(
                             value: _phase == _Phase.idle ? 0 : value,
@@ -226,17 +226,23 @@ class _FocusTimerScreenState extends State<FocusTimerScreen> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
-                                _phase == _Phase.done ? '🎉' : _clock,
-                                style: TextStyle(
-                                  fontSize:
-                                      _phase == _Phase.done ? 44 : 48,
-                                  fontWeight: FontWeight.bold,
-                                  fontFeatures: const [
-                                    FontFeature.tabularFigures(),
-                                  ],
+                              if (_phase == _Phase.done)
+                                Icon(
+                                  Icons.celebration,
+                                  size: 48,
+                                  color: accent,
+                                )
+                              else
+                                Text(
+                                  _clock,
+                                  style: const TextStyle(
+                                    fontSize: 48,
+                                    fontWeight: FontWeight.bold,
+                                    fontFeatures: [
+                                      FontFeature.tabularFigures(),
+                                    ],
+                                  ),
                                 ),
-                              ),
                               const SizedBox(height: 4),
                               Text(
                                 switch (_phase) {

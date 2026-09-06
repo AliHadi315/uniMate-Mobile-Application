@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../core/app_theme.dart';
+
 /// Simple bar chart drawn with the framework only — no chart dependency.
 class MiniBarChart extends StatelessWidget {
   const MiniBarChart({
@@ -52,7 +54,7 @@ class MiniBarChart extends StatelessWidget {
                   const SizedBox(height: 4),
                   TweenAnimationBuilder<double>(
                     tween: Tween(begin: 0, end: ratio),
-                    duration: const Duration(milliseconds: 450),
+                    duration: AppTheme.motion(context, const Duration(milliseconds: 450)),
                     curve: Curves.easeOutCubic,
                     builder: (context, t, _) => Container(
                       height: math.max(4, (height - 46) * t),
@@ -112,7 +114,7 @@ class DonutChart extends StatelessWidget {
           width: size,
           child: TweenAnimationBuilder<double>(
             tween: Tween(begin: 0, end: 1),
-            duration: const Duration(milliseconds: 550),
+            duration: AppTheme.motion(context, const Duration(milliseconds: 550)),
             curve: Curves.easeOutCubic,
             builder: (context, t, _) => CustomPaint(
               painter: _DonutPainter(

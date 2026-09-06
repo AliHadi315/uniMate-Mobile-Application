@@ -28,6 +28,20 @@ class AppTheme {
     return coursePalette[seedIndex.abs() % coursePalette.length];
   }
 
+  /// Honours the system "reduce motion" setting: returns zero duration so
+  /// tweens jump straight to their end state.
+  static Duration motion(BuildContext context, Duration duration) =>
+      MediaQuery.maybeDisableAnimationsOf(context) == true
+      ? Duration.zero
+      : duration;
+
+  /// Darkens an accent for use as small text on light backgrounds, where the
+  /// raw palette colours (amber especially) fail the 4.5:1 contrast minimum.
+  static Color textTone(Color color, Brightness brightness) =>
+      brightness == Brightness.dark
+      ? color
+      : Color.lerp(color, Colors.black, 0.30)!;
+
   static Color priorityColor(String priority) {
     switch (priority) {
       case 'High':
